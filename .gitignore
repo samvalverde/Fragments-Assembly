@@ -1,0 +1,41 @@
+# === PYTHON ===
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.db
+.env
+*.sqlite3
+
+# === JUPYTER ===
+.ipynb_checkpoints
+
+# === FLASK/CONFIG ===
+instance/
+config.py
+*.secret
+
+# === NODE / REACT / VITE ===
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env
+
+# === OS GENERATED FILES ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === IDE / EDITOR ===
+.vscode/
+.idea/
+
+# === OTHERS ===
+*.tgz
+*.zip
+*.bak
+*.swp
+*.swo
