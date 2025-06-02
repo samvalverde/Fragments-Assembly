@@ -7,7 +7,7 @@ CORS(app)  # Permite llamadas desde React
 
 @app.route('/')
 def index():
-    return jsonify({'message': 'API Flask funcionando correctamente 🎉'})
+    return jsonify({'message': 'API Flask funcionando correctamente'})
 
 @app.route('/generate', methods=['POST'])
 def generate():
