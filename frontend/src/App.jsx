@@ -40,7 +40,6 @@ export default function App() {
       {page === 'generator' && (
         <Generator
           goBack={() => setPage('main')}
-          onSubmit={handleAlignmentSubmit}
         />
       )}
       {page === 'alignment-result' && (
