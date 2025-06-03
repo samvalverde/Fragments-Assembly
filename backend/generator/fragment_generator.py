@@ -1,9 +1,15 @@
 import random
 
-def generate_fragments(sequence, count, mean_length):
+def generate_fragments(sequence, count, mean_length, std_dev=2.0):
     fragments = []
+    seq_len = len(sequence)
+
     for _ in range(count):
-        start = random.randint(0, max(0, len(sequence) - mean_length))
-        fragment = sequence[start:start + mean_length]
+        frag_len = int(random.gauss(mean_length, std_dev))
+        frag_len = max(1, min(frag_len, seq_len))
+        start = random.randint(0, seq_len - frag_len)
+        fragment = sequence[start:start + frag_len]
         fragments.append(fragment)
+
     return fragments
+

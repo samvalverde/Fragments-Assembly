@@ -12,9 +12,7 @@ const colors = {
   const theme = {
     container: {
       padding: '2rem',
-      maxWidth: '960px',
       margin: '0 auto',
-      backgroundColor: colors.background,
       minHeight: '100vh',
       fontFamily: "'Segoe UI', sans-serif",
       color: colors.text,

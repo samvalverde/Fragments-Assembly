@@ -1,84 +1,53 @@
 import React, { useState } from 'react';
 
 import MainPage from './components/MainPage';
-import AlgorithmExplanation from './components/AlgorithmExplanation';
-import Generator from './components/Generator';
-/*import AlignmentForm from './components/AlignmentForm';
-import AlignmentResult from './components/AlignmentResult';
-import TextSimilarityForm from './components/TextSimilarityForm';
-import TextSimilarityResult from './components/TextSimilarityResult';
-import RepetitionForm from './components/RepetitionForm';
-import RepetitionResult from './components/RepetitionResult';*/
+import GeneratorForm from './components/GeneratorForm';
+import GeneratorResult from './components/GeneratorResult';
+import SequenceAssembler from './components/SequenceAssembler';
+import GraphVisualization from './components/GraphVisualization';
+import About from './components/About';
+
+// npm run dev
 
 export default function App() {
   const [page, setPage] = useState('main');
-  const [alignmentResult, setAlignmentResult] = useState('');
-  const [textInputs, setTextInputs] = useState({ text1: '', text2: '' });
-  const [repetitionText, setRepetitionText] = useState('');
-
-  const handleAlignmentSubmit = (data) => {
-    // llamar acá a los algoritmos y generar el resultado
-    setAlignmentResult(`${JSON.stringify(data, null, 2)}`);
-    setPage('alignment-result');
-  };
-
+  const [generatedData, setGeneratedData] = useState(null);
+  
   return (
     <div>
       {page === 'main' && (
-        <MainPage 
-          goToExplanation={() => setPage('explanation')}
-          goToAlignment={() => setPage('generator')}
-          goToTextSimilarity={() => setPage('text-form')}
-          goToRepetition={() => setPage('repetition-form')}
+        <MainPage
+          goToGenerator={() => setPage('generator-form')}
+          goToAssembler={() => setPage('assembler')}
+          goToGraph={() => setPage('graph')}
+          goToAbout={() => setPage('about')}
         />
       )}
-      {page === 'explanation' && (
-        <AlgorithmExplanation 
+      {page === 'generator-form' && (
+        <GeneratorForm
           goBack={() => setPage('main')}
-        />
-      )}
-      {page === 'generator' && (
-        <Generator
-          goBack={() => setPage('main')}
-        />
-      )}
-      {page === 'alignment-result' && (
-        <AlignmentResult 
-          result={alignmentResult}
-          goBack={() => setPage('alignment')}
-        />
-      )}
-      {page === 'text-form' && (
-        <TextSimilarityForm
-          goBack={() => setPage('main')}
-          onSubmitResult={(text1, text2) => {
-            setTextInputs({ text1, text2 });
-            setPage('text-result');
+          onGenerated={(data) => {
+            setGeneratedData(data);
+            setPage('generator-result');
           }}
         />
       )}
-      {page === 'text-result' && (
-        <TextSimilarityResult
-          text1={textInputs.text1}
-          text2={textInputs.text2}
-          goBack={() => setPage('text-form')}
-        />
+      {page === 'generator-result' && (
+        <GeneratorResult
+          sequence={generatedData.sequence}
+          count={generatedData.count}
+          mean={generatedData.mean}
+          fragments={generatedData.fragments}
+          goBack={() => setPage('generator-form')}
+        />)}
+      {page === 'assembler' && (
+        <SequenceAssembler goBack={() => setPage('main')} />
       )}
-      {page === 'repetition-form' && (
-        <RepetitionForm
-          goBack={() => setPage('main')}
-          onSubmit={(text) => {
-            setRepetitionText(text);
-            setPage('repetition-result');
-          }}
-        />
+      {page === 'graph' && (
+        <GraphVisualization goBack={() => setPage('main')} />
       )}
-
-      {page === 'repetition-result' && (
-        <RepetitionResult
-          text={repetitionText}
-          goBack={() => setPage('repetition-form')}
-        />
+      {page === 'about' && (
+        <About goBack={() => setPage('main')} />
       )}
     </div>
   );

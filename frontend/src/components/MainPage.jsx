@@ -1,14 +1,17 @@
 import theme from '../theme';
 
-export default function MainPage({ goToExplanation, goToAlignment, goToTextSimilarity, goToRepetition }) {
+export default function MainPage({ goToGenerator, goToAssembler, goToGraph, goToAbout }) {
   const pageStyle = {
-    minHeight: '100vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     background: '#f5f7f6',
     padding: '2rem',
     fontFamily: "'Segoe UI', sans-serif",
+    minHeight: '100vh',
+    width: '100vw',
+    overflowX: 'hidden',
+    boxSizing: 'border-box',
   };
 
   const cardStyle = {
@@ -17,20 +20,24 @@ export default function MainPage({ goToExplanation, goToAlignment, goToTextSimil
     borderRadius: '16px',
     boxShadow: '0 6px 18px rgba(0, 0, 0, 0.08)',
     textAlign: 'center',
-    maxWidth: '600px',
     width: '100%',
+    maxWidth: '700px',
+    boxSizing: 'border-box',
   };
 
   const headingStyle = {
     fontSize: '2rem',
     color: '#1b1b1b',
     marginBottom: '1.5rem',
+    borderBottom: `2px solid ${theme.title.color}`,
+    paddingBottom: '0.5rem',
   };
 
   const paragraphStyle = {
     fontSize: '1.1rem',
     color: '#444',
     marginBottom: '2.5rem',
+    lineHeight: '1.6',
   };
 
   const buttonStyle = {
@@ -42,47 +49,49 @@ export default function MainPage({ goToExplanation, goToAlignment, goToTextSimil
   return (
     <div style={pageStyle}>
       <div style={cardStyle}>
-        <h1 style={headingStyle}>Proyecto 1 - Alineamiento de Secuencias</h1>
+        <h1 style={headingStyle}>Proyecto 2 - Fragmentación y Ensamblaje de ADN</h1>
         <p style={paragraphStyle}>
-          Compara secuencias de ADN, ARN, proteínas o texto. Visualiza alineamientos, aprende cómo funcionan los algoritmos y evalúa similitud textual.
+          Esta plataforma permite simular la fragmentación aleatoria de secuencias de ADN (o texto),
+          aplicar errores típicos de laboratorio como sustituciones o quimeras, y ensamblar los fragmentos
+          utilizando grafos de traslape. Visualiza el proceso, comprende los algoritmos involucrados y genera
+          tus propios experimentos.
         </p>
 
         <button
-          onClick={goToAlignment}
+          onClick={goToGenerator}
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = theme.buttonHover.backgroundColor)}
           onMouseOut={(e) => (e.target.style.backgroundColor = theme.button.backgroundColor)}
         >
-          Alineamiento de Secuencias
+          Generador de Fragmentos
         </button>
 
         <button
-          onClick={goToTextSimilarity}
+          onClick={goToAssembler}
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = theme.buttonHover.backgroundColor)}
           onMouseOut={(e) => (e.target.style.backgroundColor = theme.button.backgroundColor)}
         >
-          Similitud entre Textos
+          Ensamblador de Fragmentos
         </button>
 
         <button
-          onClick={goToRepetition}
+          onClick={goToGraph}
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = theme.buttonHover.backgroundColor)}
           onMouseOut={(e) => (e.target.style.backgroundColor = theme.button.backgroundColor)}
         >
-          Repeticiones en Texto
+          Explorador del Grafo
         </button>
 
         <button
-          onClick={goToExplanation}
+          onClick={goToAbout}
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = theme.buttonHover.backgroundColor)}
           onMouseOut={(e) => (e.target.style.backgroundColor = theme.button.backgroundColor)}
         >
-          Algoritmos de alineamiento
+          Acerca del Proyecto
         </button>
-
       </div>
     </div>
   );
